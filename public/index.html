@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pedidos Sr. Luis - Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-utensils"></i> Sistema de Pedidos Sr. Luis</h1>
+            <p>Panel de Pruebas - Backend API</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Sección de Login -->
+            <div class="card" id="loginSection">
+                <h2><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</h2>
+                <form id="loginForm" class="form">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required placeholder="usuario@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" required placeholder="Contraseña">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </button>
+                </form>
+            </div>
+
+            <!-- Sección de Registro -->
+            <div class="card" id="registerSection">
+                <h2><i class="fas fa-user-plus"></i> Registrar Usuario</h2>
+                <form id="registerForm" class="form">
+                    <div class="form-group">
+                        <label for="regName">Nombre:</label>
+                        <input type="text" id="regName" name="name" required placeholder="Nombre completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email:</label>
+                        <input type="email" id="regEmail" name="email" required placeholder="usuario@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">Contraseña:</label>
+                        <input type="password" id="regPassword" name="password" required placeholder="Contraseña">
+                    </div>
+                    <div class="form-group">
+                        <label for="regRole">Rol:</label>
+                        <select id="regRole" name="role" required>
+                            <option value="">Seleccionar rol</option>
+                            <option value="admin">Administrador</option>
+                            <option value="mesero">Mesero</option>
+                            <option value="cocinero">Cocinero</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-user-plus"></i> Registrar
+                    </button>
+                </form>
+            </div>
+
+            <!-- Sección de Pedidos (solo visible después del login) -->
+            <div class="card hidden" id="ordersSection">
+                <h2><i class="fas fa-clipboard-list"></i> Gestión de Pedidos</h2>
+                <div class="orders-controls">
+                    <button id="createOrderBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Nuevo Pedido
+                    </button>
+                    <button id="refreshOrdersBtn" class="btn btn-secondary">
+                        <i class="fas fa-sync-alt"></i> Actualizar
+                    </button>
+                </div>
+                <div id="ordersList" class="orders-list">
+                    <!-- Los pedidos se cargarán aquí -->
+                </div>
+            </div>
+
+            <!-- Modal para crear pedido -->
+            <div id="orderModal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3><i class="fas fa-plus"></i> Crear Nuevo Pedido</h3>
+                    <form id="orderForm" class="form">
+                        <div class="form-group">
+                            <label for="orderTable">Mesa:</label>
+                            <input type="number" id="orderTable" name="table" required min="1" placeholder="Número de mesa">
+                        </div>
+                        <div class="form-group">
+                            <label for="orderItems">Items (JSON):</label>
+                            <textarea id="orderItems" name="items" required placeholder='[{"name": "Hamburguesa", "quantity": 2, "price": 15.50}]'></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderNotes">Notas:</label>
+                            <textarea id="orderNotes" name="notes" placeholder="Notas especiales..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Crear Pedido
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel de estado -->
+        <div class="status-panel">
+            <div class="status-item">
+                <span class="status-label">API Status:</span>
+                <span id="apiStatus" class="status-value">Conectando...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Usuario:</span>
+                <span id="userStatus" class="status-value">No autenticado</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
