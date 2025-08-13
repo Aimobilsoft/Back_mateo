@@ -22,7 +22,7 @@ const verifyToken = async (req, res, next) => {
     }
 
     // Verificar token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, require('../../constants').JWT_SECRET);
     
     // Verificar que el usuario existe y está activo
     const userQuery = `

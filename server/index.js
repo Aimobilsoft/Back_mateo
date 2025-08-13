@@ -2,14 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const path = require('path');
-require('dotenv').config();
+const config = require('./constants');
 
 const app = express();
 
 // Middlewares de seguridad
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  origin: config.CORS_ORIGIN || 'http://localhost:5173',
   credentials: true
 }));
 
@@ -44,7 +44,7 @@ app.get('/api/health', (req, res) => {
 app.get('/api', (req, res) => {
   res.json({
     message: 'Sistema de Pedidos Sr. Luis - API Backend',
-    version: process.env.APP_VERSION || '1.0.0',
+    version: config.APP_VERSION || '1.0.0',
     status: 'running',
     timestamp: new Date().toISOString()
   });
@@ -72,7 +72,7 @@ app.use('*', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = config.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en puerto ${PORT}`);

@@ -50,8 +50,8 @@ const login = async (req, res) => {
         tenantId: user.tenant_id,
         role: user.role 
       },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN }
+      require('../../constants').JWT_SECRET,
+      { expiresIn: require('../../constants').JWT_EXPIRES_IN }
     );
 
     // Remover password de la respuesta
